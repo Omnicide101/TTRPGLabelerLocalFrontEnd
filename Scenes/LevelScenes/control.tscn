@@ -1,0 +1,85 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgfo288ygvkmy"]
+
+[ext_resource type="Script" uid="uid://cauf80a2y6wqn" path="res://Assets/Script/InputHandler.gd" id="1_6qaec"]
+[ext_resource type="Script" uid="uid://1irey5ms4tp1" path="res://Assets/Script/IDInputHandler.gd" id="2_q31cq"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+layout_mode = 2
+color = Color(0.381703, 0.381703, 0.381703, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+layout_direction = 1
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Rows" type="VBoxContainer" parent="Background/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="GameText" type="RichTextLabel" parent="Background/MarginContainer/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+scroll_following = true
+
+[node name="PanelContainer" type="HBoxContainer" parent="Background/MarginContainer/Rows"]
+layout_mode = 2
+
+[node name="Input" type="Label" parent="Background/MarginContainer/Rows/PanelContainer"]
+layout_mode = 2
+text = ">"
+
+[node name="LineEdit" type="LineEdit" parent="Background/MarginContainer/Rows/PanelContainer/Input"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.2
+anchor_top = -0.217
+anchor_right = 112.1
+anchor_bottom = 1.0
+offset_top = -0.00899982
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+placeholder_text = "Write response here..."
+keep_editing_on_text_submit = true
+script = ExtResource("1_6qaec")
+
+[node name="ID" type="Label" parent="Background/MarginContainer/Rows/PanelContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Background/MarginContainer/Rows/PanelContainer/ID"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 837.0
+anchor_top = -25.261
+anchor_right = 1110.0
+anchor_bottom = -23.696
+offset_left = -6.10352e-05
+offset_top = 0.00305176
+offset_bottom = 0.00799561
+grow_horizontal = 2
+grow_vertical = 0
+placeholder_text = "Enter ID (press Ctrl+D to generate)"
+script = ExtResource("2_q31cq")
+
+[connection signal="text_submitted" from="Background/MarginContainer/Rows/PanelContainer/Input/LineEdit" to="Background/MarginContainer/Rows/PanelContainer/Input/LineEdit" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Background/MarginContainer/Rows/PanelContainer/ID/LineEdit" to="Background/MarginContainer/Rows/PanelContainer/ID/LineEdit" method="_on_text_submitted"]
